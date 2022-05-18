@@ -2,4 +2,7 @@
     <string name="app_name">FunLearn</string>
 
     <string name="fruits_photo_desc">fruits</string>
+    <string name="button">Button</string>
+    <string name="loudspeaker">loudspeaker</string>
+    <string name="question">question</string>
 </resources>

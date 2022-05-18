@@ -3,93 +3,115 @@ package com.example.funlearn;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
 
 public class FruitsQuiz extends AppCompatActivity implements View.OnClickListener
 {
-
-    Button btn_one, btn_two, btn_three, btn_four;
+    ImageButton audio;
+    ImageButton btn_one, btn_two, btn_three, btn_four;
     TextView tv_question;
 
     private Question question = new Question();
 
     private String answer;
     private int questionLength = question.questions.length;
+    private int answersLength = question.choices.length;
+    private int num;
 
-    Random random;
+    //Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fruits_quiz);
 
-        random = new Random();
+        //random = new Random();
 
-        btn_one = (Button)findViewById(R.id.btn_one);
+        btn_one = (ImageButton)findViewById(R.id.btn_one);
         btn_one.setOnClickListener(this);
-        btn_two = (Button)findViewById(R.id.btn_two);
+        btn_two = (ImageButton)findViewById(R.id.btn_two);
         btn_two.setOnClickListener(this);
-        btn_three = (Button)findViewById(R.id.btn_three);
+        btn_three = (ImageButton)findViewById(R.id.btn_three);
         btn_three.setOnClickListener(this);
-        btn_four = (Button)findViewById(R.id.btn_four);
+        btn_four = (ImageButton)findViewById(R.id.btn_four);
         btn_four.setOnClickListener(this);
 
         tv_question = (TextView)findViewById(R.id.tv_question);
 
-        NextQuestion(random.nextInt(questionLength));
+        shuffleQuestions();
+        num = 0;
+        NextQuestion();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.audio :
+                Toast.makeText(FruitsQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
+                playQuestion();
+                break;
+
             case R.id.btn_one:
-                if(btn_one.getText() == answer){
+                if(btn_one.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion(random.nextInt(questionLength));
+                    NextQuestion();
                 }else{
-                    GameOver();
+                    playQuestion();
                 }
 
                 break;
 
             case R.id.btn_two:
-                if(btn_two.getText() == answer){
+                if(btn_two.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion(random.nextInt(questionLength));
+                    NextQuestion();
                 }else{
-                    GameOver();
+                    playQuestion();
                 }
 
                 break;
 
             case R.id.btn_three:
-                if(btn_three.getText() == answer){
+                if(btn_three.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion(random.nextInt(questionLength));
+                    NextQuestion();
                 }else{
-                    GameOver();
+                    playQuestion();
                 }
 
                 break;
 
             case R.id.btn_four:
-                if(btn_four.getText() == answer){
+                if(btn_four.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion(random.nextInt(questionLength));
+                    NextQuestion();
                 }else{
-                    GameOver();
+                    playQuestion();
                 }
 
                 break;
         }
+    }
+
+    private void GameEnd(){
+        //TODO
     }
 
     private void GameOver(){
@@ -113,13 +135,46 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    private void NextQuestion(int num){
-        tv_question.setText(question.getQuestion(num));
-        btn_one.setText(question.getchoice1(num));
-        btn_two.setText(question.getchoice2(num));
-        btn_three.setText(question.getchoice3(num));
-        btn_four.setText(question.getchoice4(num));
+    public static int getResourceId(Context context, String type, String name) {
+        name = name.toLowerCase();
+        return context.getResources().getIdentifier(name, type, context.getPackageName());
+    }
 
-        answer = question.getCorrectAnswer(num);
+
+    private ArrayList<Integer> shuffledQuestions = new ArrayList<Integer>();
+
+    private void shuffleQuestions(){
+        for(int i=0; i<question.questions.length; i++){
+
+            shuffledQuestions.add(new Integer(i));
+        }
+        Collections.shuffle(shuffledQuestions);
+    }
+
+    private void playQuestion(){
+
+        MediaPlayer music = MediaPlayer.create(FruitsQuiz.this, getResourceId(this,"raw" , answer));
+        music.start();
+    }
+
+    // Sets quiz for the next question
+    private void NextQuestion(){
+        if (shuffledQuestions.size()==num){
+           // fillRemainingQuestions();
+            GameOver();
+        }
+
+        int shuffledNum = shuffledQuestions.get(num);
+        num += 1;
+
+        answer = question.getCorrectAnswer(shuffledNum);
+        tv_question.setText(question.getQuestion(shuffledNum));
+        playQuestion();
+
+        btn_one.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable", question.getchoice1(shuffledNum))));
+        btn_two.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable",question.getchoice2(shuffledNum))));
+        btn_three.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable",question.getchoice3(shuffledNum))));
+        btn_four.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable",question.getchoice4(shuffledNum))));
+
     }
 }
