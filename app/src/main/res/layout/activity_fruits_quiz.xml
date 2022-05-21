@@ -7,14 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.funlearn.MainActivity">
 
-    <GridView
-        android:id="@+id/menuAnswers"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:horizontalSpacing="6dp"
-        android:numColumns="2"
-        android:verticalSpacing="6dp" />
-
     <ImageButton
         android:id="@+id/btn_one"
         android:layout_width="150dp"
