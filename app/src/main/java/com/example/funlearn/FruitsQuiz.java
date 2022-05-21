@@ -6,21 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Random;
 
 public class FruitsQuiz extends AppCompatActivity implements View.OnClickListener
 {
@@ -52,8 +46,10 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         btn_three.setOnClickListener(this);
         btn_four = (ImageButton)findViewById(R.id.btn_four);
         btn_four.setOnClickListener(this);
+        audio = (ImageButton)findViewById(R.id.audio);
+        audio.setOnClickListener(this);
 
-        tv_question = (TextView)findViewById(R.id.tv_question);
+        //tv_question = (TextView)findViewById(R.id.tv_question);
 
         shuffleQuestions();
         num = 0;
@@ -63,7 +59,8 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.audio :
+
+            case R.id.audio:
                 Toast.makeText(FruitsQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
                 playQuestion();
                 break;
@@ -168,7 +165,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         num += 1;
 
         answer = question.getCorrectAnswer(shuffledNum);
-        tv_question.setText(question.getQuestion(shuffledNum));
+        //tv_question.setText(question.getQuestion(shuffledNum));
         playQuestion();
 
         btn_one.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable", question.getchoice1(shuffledNum))));

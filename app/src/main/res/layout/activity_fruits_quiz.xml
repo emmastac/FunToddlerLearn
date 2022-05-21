@@ -1,55 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.funlearn.MainActivity">
+
+    <GridView
+        android:id="@+id/menuAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="6dp"
+        android:numColumns="2"
+        android:verticalSpacing="6dp" />
 
     <ImageButton
         android:id="@+id/btn_one"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_above="@+id/btn_two"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:contentDescription="@string/fruits_photo_desc" />
+        android:contentDescription="@string/fruits_photo_desc"
+        app:layout_constraintBottom_toTopOf="@+id/btn_two"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_two"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/btn_three"/>
+        android:contentDescription="@string/fruits_photo_desc"
+        app:layout_constraintBottom_toTopOf="@+id/btn_three"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_three"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/btn_four"/>
+        android:contentDescription="@string/fruits_photo_desc"
+        app:layout_constraintBottom_toTopOf="@+id/btn_four"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/btn_four"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:layout_alignParentBottom="true"/>
+        android:contentDescription="@string/fruits_photo_desc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/audio"
         android:layout_width="110dp"
         android:layout_height="116dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:background="@drawable/loudspeaker"
-        android:contentDescription="@string/loudspeaker" />
+        android:contentDescription="@string/loudspeaker"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--
 
     <TextView
         android:id="@+id/tv_question"
@@ -57,5 +75,6 @@
         android:layout_height="wrap_content"
         android:text="@string/question" />
 
+-->
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
