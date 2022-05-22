@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class FruitsQuiz extends AppCompatActivity implements View.OnClickListener
 {
@@ -57,13 +58,29 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         NextQuestion();
     }
 
+    private void disableClicks(){
+        audio.setOnClickListener(null);
+        btn_one.setOnClickListener(null);
+        btn_two.setOnClickListener(null);
+        btn_three.setOnClickListener(null);
+    }
+
+    private void enableClicks(){
+        audio.setOnClickListener(this);
+        btn_one.setOnClickListener(this);
+        btn_two.setOnClickListener(this);
+        btn_three.setOnClickListener(this);
+    }
+
     @Override
     public void onClick(View v) {
+        disableClicks();
         switch (v.getId()){
 
             case R.id.audio:
+
                 Toast.makeText(FruitsQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
-                playQuestion();
+                replayQuestion();
                 break;
 
             case R.id.btn_one:
@@ -71,7 +88,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
-                    playQuestion();
+                    replayQuestion();
                 }
 
                 break;
@@ -81,7 +98,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
-                    playQuestion();
+                    replayQuestion();
                 }
 
                 break;
@@ -91,7 +108,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
-                    playQuestion();
+                    replayQuestion();
                 }
 
                 break;
@@ -101,11 +118,13 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
-                    playQuestion();
+                    replayQuestion();
                 }
 
                 break;*/
         }
+
+        enableClicks();
     }
 
     private void GameOver(){
@@ -150,10 +169,23 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         Collections.shuffle(shuffledQuestions);
     }
 
-    private void playQuestion(){
+    private MediaPlayer music;
 
-        MediaPlayer music = MediaPlayer.create(FruitsQuiz.this, getResourceId(this,"raw" , answer));
+    private void replayQuestion(){
+        if(music == null || !music.isPlaying()){
+            music = MediaPlayer.create(FruitsQuiz.this, getResourceId(this,"raw" , answer));
+            music.start();
+        }else{
+            //TODO:
+        }
+    }
+
+    private void playQuestion(){
+        while(music!=null && music.isPlaying()){
+        }
+        music = MediaPlayer.create(FruitsQuiz.this, getResourceId(this,"raw" , answer));
         music.start();
+
     }
 
     // Sets quiz for the next question
