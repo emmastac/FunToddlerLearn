@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** Called when the user taps the Send button */
+    /** Called when the user taps the Fruits button */
     public void openFruitsQuiz(View view) {
         Intent intent = new Intent(this, FruitsQuiz.class);
         //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);

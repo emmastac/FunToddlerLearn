@@ -20,13 +20,14 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 {
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three, btn_four;
-    TextView tv_question;
 
-    private Question question = new Question();
+    private String[] questions = {"pomme", "banane", "cerise", "abricot", "ananas", "citron",
+            "fraise", "framboise", "orange", "poire", "pasteque", "raisin"};
+
+    private Question question = new Question(questions);
 
     private String answer;
-    private int questionLength = question.questions.length;
-    private int answersLength = question.choices.length;
+    private int questionLength = questions.length;
     private int num;
 
     //Random random;
@@ -44,8 +45,8 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         btn_two.setOnClickListener(this);
         btn_three = (ImageButton)findViewById(R.id.btn_three);
         btn_three.setOnClickListener(this);
-        btn_four = (ImageButton)findViewById(R.id.btn_four);
-        btn_four.setOnClickListener(this);
+        //btn_four = (ImageButton)findViewById(R.id.btn_four);
+        //btn_four.setOnClickListener(this);
         audio = (ImageButton)findViewById(R.id.audio);
         audio.setOnClickListener(this);
 
@@ -66,7 +67,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.btn_one:
-                if(btn_one.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
+                if(btn_one.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
@@ -76,7 +77,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.btn_two:
-                if(btn_two.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
+                if(btn_two.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
@@ -86,7 +87,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.btn_three:
-                if(btn_three.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
+                if(btn_three.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
@@ -95,20 +96,16 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
                 break;
 
-            case R.id.btn_four:
-                if(btn_four.getBackground().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
+           /* case R.id.btn_four:
+                if(btn_four.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
                     Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     playQuestion();
                 }
 
-                break;
+                break;*/
         }
-    }
-
-    private void GameEnd(){
-        //TODO
     }
 
     private void GameOver(){
@@ -132,6 +129,11 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
     }
 
+    private void GameEnd(){
+        finish();
+
+    }
+
     public static int getResourceId(Context context, String type, String name) {
         name = name.toLowerCase();
         return context.getResources().getIdentifier(name, type, context.getPackageName());
@@ -141,7 +143,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
     private ArrayList<Integer> shuffledQuestions = new ArrayList<Integer>();
 
     private void shuffleQuestions(){
-        for(int i=0; i<question.questions.length; i++){
+        for(int i=0; i<questions.length; i++){
 
             shuffledQuestions.add(new Integer(i));
         }
@@ -158,7 +160,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
     private void NextQuestion(){
         if (shuffledQuestions.size()==num){
            // fillRemainingQuestions();
-            GameOver();
+            GameEnd();
         }
 
         int shuffledNum = shuffledQuestions.get(num);
@@ -168,10 +170,10 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         //tv_question.setText(question.getQuestion(shuffledNum));
         playQuestion();
 
-        btn_one.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable", question.getchoice1(shuffledNum))));
-        btn_two.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable",question.getchoice2(shuffledNum))));
-        btn_three.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable",question.getchoice3(shuffledNum))));
-        btn_four.setBackground(this.getResources().getDrawable(getResourceId(this, "drawable",question.getchoice4(shuffledNum))));
+        btn_one.setImageResource(getResourceId(this, "drawable", question.getchoice1(shuffledNum)));
+        btn_two.setImageResource(getResourceId(this, "drawable",question.getchoice2(shuffledNum)));
+        btn_three.setImageResource(getResourceId(this, "drawable",question.getchoice3(shuffledNum)));
+        //btn_four.setImageResource(getResourceId(this, "drawable",question.getchoice4(shuffledNum)));
 
     }
 }
