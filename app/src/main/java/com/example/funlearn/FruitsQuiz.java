@@ -58,23 +58,9 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         NextQuestion();
     }
 
-    private void disableClicks(){
-        audio.setOnClickListener(null);
-        btn_one.setOnClickListener(null);
-        btn_two.setOnClickListener(null);
-        btn_three.setOnClickListener(null);
-    }
-
-    private void enableClicks(){
-        audio.setOnClickListener(this);
-        btn_one.setOnClickListener(this);
-        btn_two.setOnClickListener(this);
-        btn_three.setOnClickListener(this);
-    }
 
     @Override
     public void onClick(View v) {
-        disableClicks();
         switch (v.getId()){
 
             case R.id.audio:
@@ -123,8 +109,6 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
                 break;*/
         }
-
-        enableClicks();
     }
 
     private void GameOver(){
