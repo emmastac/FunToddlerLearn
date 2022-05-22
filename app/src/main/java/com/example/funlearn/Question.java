@@ -23,7 +23,7 @@ public class Question {
             iChoice.add(q[i]);
 
             while(iChoice.size()<choiceSize){
-                int next = rand.nextInt(choiceSize);
+                int next = rand.nextInt(this.correctAnswer.length);
                 if(!iChoice.contains(q[next])){
                     iChoice.add(q[next]);
                 }
