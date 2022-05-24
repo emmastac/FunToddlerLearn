@@ -1,8 +1,5 @@
 package com.example.funlearn;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,34 +7,34 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
-public class FruitsQuiz extends AppCompatActivity implements View.OnClickListener
+public class CollectionQuiz extends AppCompatActivity implements View.OnClickListener
 {
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three, btn_four;
 
-    private String[] questions = {"pomme", "banane", "cerise", "abricot", "ananas", "citron",
-            "fraise", "framboise", "orange", "poire", "pasteque", "raisin"};
+    private String[] questions;
 
-    private Question question = new Question(questions);
+    private Question question;
 
     private String answer;
-    private int questionLength = questions.length;
     private int num;
-
-    //Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fruits_quiz);
+        setContentView(R.layout.activity_collection_quiz);
 
+        Bundle extras = getIntent().getExtras();
+        String collection = extras.getString(MainActivity.EXTRA_MESSAGE);
+        loadCollection(collection);
         //random = new Random();
 
         btn_one = (ImageButton)findViewById(R.id.btn_one);
@@ -58,6 +55,18 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         NextQuestion();
     }
 
+    public void loadCollection(String collectionName){
+        switch (collectionName){
+
+            case MainActivity.FRUITS:
+                this.questions = new String[]{"pomme", "banane", "cerise", "abricot", "ananas", "citron",
+                        "fraise", "framboise", "orange", "poire", "pasteque", "raisin"};
+                this.question = new Question(this.questions);
+                break;
+
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -65,13 +74,13 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
             case R.id.audio:
 
-                Toast.makeText(FruitsQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CollectionQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
                 replayQuestion();
                 break;
 
             case R.id.btn_one:
                 if(btn_one.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
-                    Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     replayQuestion();
@@ -81,7 +90,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_two:
                 if(btn_two.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     replayQuestion();
@@ -91,7 +100,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_three:
                 if(btn_three.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     replayQuestion();
@@ -112,7 +121,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
     }
 
     private void GameOver(){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FruitsQuiz.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CollectionQuiz.this);
         alertDialogBuilder
                 .setMessage("Game Over")
                 .setCancelable(false)
@@ -146,8 +155,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
     private ArrayList<Integer> shuffledQuestions = new ArrayList<Integer>();
 
     private void shuffleQuestions(){
-        for(int i=0; i<questions.length; i++){
-
+        for(int i=0; i<this.questions.length; i++){
             shuffledQuestions.add(new Integer(i));
         }
         Collections.shuffle(shuffledQuestions);
@@ -157,17 +165,15 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
 
     private void replayQuestion(){
         if(music == null || !music.isPlaying()){
-            music = MediaPlayer.create(FruitsQuiz.this, getResourceId(this,"raw" , answer));
+            music = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
             music.start();
-        }else{
-            //TODO:
         }
     }
 
     private void playQuestion(){
         while(music!=null && music.isPlaying()){
         }
-        music = MediaPlayer.create(FruitsQuiz.this, getResourceId(this,"raw" , answer));
+        music = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
         music.start();
 
     }
@@ -182,7 +188,7 @@ public class FruitsQuiz extends AppCompatActivity implements View.OnClickListene
         int shuffledNum = shuffledQuestions.get(num);
         num += 1;
 
-        answer = question.getCorrectAnswer(shuffledNum);
+        answer = this.question.getCorrectAnswer(shuffledNum);
         //tv_question.setText(question.getQuestion(shuffledNum));
         playQuestion();
 

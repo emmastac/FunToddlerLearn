@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FunLearn">
         <activity
-            android:name=".FruitsQuiz"
+            android:name=".CollectionQuiz"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

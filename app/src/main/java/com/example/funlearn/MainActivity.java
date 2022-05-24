@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MyActivity";
     public static final String EXTRA_MESSAGE = "com.example.funlearn.MESSAGE";
+
+    public static final String FRUITS = "fruits";
 
 
     @Override
@@ -34,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the Fruits button */
     public void openFruitsQuiz(View view) {
-        Intent intent = new Intent(this, FruitsQuiz.class);
+        Intent intent = new Intent(this, CollectionQuiz.class);
         //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         //String message = editText.getText().toString();
         //intent.putExtra(EXTRA_MESSAGE, message);
-        intent.putExtra(EXTRA_MESSAGE, "fruitsQuiz");
+        intent.putExtra(EXTRA_MESSAGE, FRUITS);
         startActivity(intent);
     }
 
