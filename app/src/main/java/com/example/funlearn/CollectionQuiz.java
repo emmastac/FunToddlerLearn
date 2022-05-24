@@ -64,6 +64,15 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
                 this.question = new Question(this.questions);
                 break;
 
+            case MainActivity.ANIMALS:
+                this.questions = new String[]{"serpent", "elephant", "chevre", "poisson", "chameau",
+                        "grenouille", "girafe", "ours", "herisson", "hibou", "cerf", "loup",
+                        "oiseau", "kangourou", "ecureuil", "renard", "cheval", "poule", "coq",
+                        "canard", "cochon", "mouton", "vache", "perroquet", "souris", "tortue",
+                        "lapin", "chat", "chien"};
+                this.question = new Question(this.questions);
+                break;
+
         }
     }
 
@@ -73,39 +82,35 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
 
             case R.id.audio:
-
-                Toast.makeText(CollectionQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CollectionQuiz.this, "Play question", Toast.LENGTH_SHORT).show();
                 replayQuestion();
                 break;
 
             case R.id.btn_one:
                 if(btn_one.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
-                    Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     replayQuestion();
                 }
-
                 break;
 
             case R.id.btn_two:
                 if(btn_two.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     replayQuestion();
                 }
-
                 break;
 
             case R.id.btn_three:
                 if(btn_three.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
                     NextQuestion();
                 }else{
                     replayQuestion();
                 }
-
                 break;
 
            /* case R.id.btn_four:

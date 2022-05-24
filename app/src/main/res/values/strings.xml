@@ -5,4 +5,5 @@
     <string name="button">Button</string>
     <string name="loudspeaker">loudspeaker</string>
     <string name="question">question</string>
+    <string name="animals_photo_desc">animals</string>
 </resources>
