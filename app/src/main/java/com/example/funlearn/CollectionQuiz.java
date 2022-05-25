@@ -27,6 +27,8 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     private String answer;
     private int num;
 
+    public static int max_quest = 10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,27 +127,6 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void GameOver(){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CollectionQuiz.this);
-        alertDialogBuilder
-                .setMessage("Game Over")
-                .setCancelable(false)
-                .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
-                })
-                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.exit(0);
-                    }
-                });
-        alertDialogBuilder.show();
-
-    }
-
     private void GameEnd(){
         finish();
 
@@ -185,22 +166,21 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
     // Sets quiz for the next question
     private void NextQuestion(){
-        if (shuffledQuestions.size()==num){
-           // fillRemainingQuestions();
-            GameEnd();
+        if (shuffledQuestions.size()==num || num==max_quest){
+            this.finish();
+        }else{
+            int nextIndex = shuffledQuestions.get(num);
+            num += 1;
+
+            answer = this.question.getCorrectAnswer(nextIndex);
+            playQuestion();
+
+            btn_one.setImageResource(getResourceId(this, "drawable", question.getchoice1(nextIndex)));
+            btn_two.setImageResource(getResourceId(this, "drawable",question.getchoice2(nextIndex)));
+            btn_three.setImageResource(getResourceId(this, "drawable",question.getchoice3(nextIndex)));
+
         }
 
-        int shuffledNum = shuffledQuestions.get(num);
-        num += 1;
-
-        answer = this.question.getCorrectAnswer(shuffledNum);
-        //tv_question.setText(question.getQuestion(shuffledNum));
-        playQuestion();
-
-        btn_one.setImageResource(getResourceId(this, "drawable", question.getchoice1(shuffledNum)));
-        btn_two.setImageResource(getResourceId(this, "drawable",question.getchoice2(shuffledNum)));
-        btn_three.setImageResource(getResourceId(this, "drawable",question.getchoice3(shuffledNum)));
-        //btn_four.setImageResource(getResourceId(this, "drawable",question.getchoice4(shuffledNum)));
 
     }
 }

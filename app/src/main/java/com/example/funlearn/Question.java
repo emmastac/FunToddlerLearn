@@ -35,30 +35,6 @@ public class Question {
 
     }
 
-//    public String[] questions = {
-//            "Where is the apple?",
-//            "Where is the banane?",
-//            "Where is the cherry?"
-//    };
-
-/*    public String[][] choices = {
-            {"apple", "banane", "cherry"},
-            {"abricot", "cherry", "banane"},
-            {"apple", "banane", "cherry"},
-            {"apple", "banane", "abricot"}
-    };*/
-
-//    public String[] correctAnswer = {
-//            "apple",
-//            "banane",
-//            "cherry",
-//            "abricot"
-//    };
-
-/*    public String getQuestion(int a){
-        return questions[a];
-    }*/
-
     public String getchoice1(int a){
         return choices[a][0];
     }
@@ -69,10 +45,6 @@ public class Question {
 
     public String getchoice3(int a){
         return choices[a][2];
-    }
-
-    public String getchoice4(int a){
-        return choices[a][3];
     }
 
     public String getCorrectAnswer(int a){
