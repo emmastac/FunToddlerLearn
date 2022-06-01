@@ -6,38 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   <ImageButton
-       android:id="@+id/fruitsButton"
+   <androidx.constraintlayout.helper.widget.Flow
        android:layout_width="0dp"
-       android:layout_height="191dp"
+       android:layout_height="wrap_content"
        android:layout_marginTop="16dp"
-       android:adjustViewBounds="true"
-       android:background="@android:color/white"
-       android:contentDescription="@string/fruits_photo_desc"
-       android:padding="5dp"
-       android:scaleType="fitCenter"
-       android:src="@drawable/fruits"
-       app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintRight_toRightOf="parent"
-       tools:ignore="SpeakableTextPresentCheck" />
+       android:layout_marginLeft="16dp"
+       android:layout_marginRight="16dp"
+       app:constraint_referenced_ids="fruitsButton,animalsButton,appleButton,bananeButton"
+       app:flow_verticalGap="5dp"
+       app:flow_wrapMode="aligned"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+
+   </androidx.constraintlayout.helper.widget.Flow>
 
    <ImageButton
        android:id="@+id/animalsButton"
-       android:layout_width="0dp"
-       android:layout_height="191dp"
-       android:layout_marginTop="28dp"
+       android:layout_width="120dp"
+       android:layout_height="120dp"
        android:adjustViewBounds="true"
-       android:background="@android:color/white"
+       android:background="@android:color/holo_orange_light"
        android:contentDescription="@string/animals_photo_desc"
-       android:padding="5dp"
+       android:padding="3dp"
        android:scaleType="fitCenter"
        android:src="@drawable/animaux"
-       app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintTop_toBottomOf="@+id/fruitsButton"
-       app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintRight_toRightOf="parent"
        tools:ignore="SpeakableTextPresentCheck" />
+
+   <ImageButton
+       android:id="@+id/bananeButton"
+       android:layout_width="120dp"
+       android:layout_height="120dp"
+       android:layout_marginTop="28dp"
+       android:adjustViewBounds="true"
+       android:background="@android:color/holo_orange_light"
+       android:contentDescription="@string/animals_photo_desc"
+       android:padding="3dp"
+       android:scaleType="fitCenter"
+       android:src="@drawable/banane"
+       tools:ignore="SpeakableTextPresentCheck" />
+
+   <ImageButton
+       android:id="@+id/fruitsButton"
+       android:layout_width="120dp"
+       android:layout_height="120dp"
+       android:adjustViewBounds="true"
+       android:background="@android:color/holo_orange_light"
+       android:contentDescription="@string/fruits_photo_desc"
+       android:padding="3dp"
+       android:scaleType="fitCenter"
+       android:src="@drawable/fruits"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       tools:ignore="SpeakableTextPresentCheck" />
+
+   <!--app:layout_constraintHorizontal_bias="0.0"
+   app:layout_constraintTop_toTopOf="parent"
+   app:layout_constraintLeft_toLeftOf="parent"
+   app:layout_constraintRight_toRightOf="parent"-->
+
+   <!-- android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintEnd_toEndOf="parent"
+   app:layout_constraintTop_toTopOf="parent"-->
+
+   <ImageButton
+       android:id="@+id/appleButton"
+       android:layout_width="120dp"
+       android:layout_height="120dp"
+       android:layout_marginTop="28dp"
+       android:adjustViewBounds="true"
+       android:background="@android:color/holo_orange_light"
+       android:contentDescription="@string/animals_photo_desc"
+       android:padding="3dp"
+       android:scaleType="fitCenter"
+       android:src="@drawable/pomme"
+       tools:ignore="SpeakableTextPresentCheck" />
+
+
+   <!--app:layout_constraintHorizontal_bias="0.0"
+   app:layout_constraintTop_toBottomOf="@+id/animalsButton"
+   app:layout_constraintLeft_toLeftOf="parent"
+   app:layout_constraintRight_toRightOf="parent"-->
+
+
+   <!--app:layout_constraintHorizontal_bias="0.0"
+   app:layout_constraintTop_toBottomOf="@+id/appleButton"
+   app:layout_constraintLeft_toLeftOf="parent"
+   app:layout_constraintRight_toRightOf="parent"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

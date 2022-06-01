@@ -18,7 +18,7 @@ import java.util.Collections;
 public class CollectionQuiz extends AppCompatActivity implements View.OnClickListener
 {
     ImageButton audio;
-    ImageButton btn_one, btn_two, btn_three, btn_four;
+    ImageButton btn_one, btn_two, btn_three;
 
     private String[] questions;
 
