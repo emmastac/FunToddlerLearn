@@ -12,9 +12,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String EXTRA_MESSAGE = "com.example.funlearn.MESSAGE";
 
     public static final String FRUITS = "fruits";
-    public static final String ANIMALS = "animals";
+    public static final String ANIMALS = "animaux";
+    public static final String LEGUMES = "legumes";
 
-    ImageButton fruitsButton, animalsButton;
+    ImageButton fruitsButton, animalsButton, legumesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fruitsButton.setOnClickListener(this);
         animalsButton = (ImageButton)findViewById(R.id.animalsButton);
         animalsButton.setOnClickListener(this);
+        legumesButton = (ImageButton)findViewById(R.id.legumesButton);
+        legumesButton.setOnClickListener(this);
     }
 
 
@@ -41,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.animalsButton:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, ANIMALS);
+                startActivity(intent);
+                break;
+
+            case R.id.legumesButton:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, LEGUMES);
                 startActivity(intent);
                 break;
         }

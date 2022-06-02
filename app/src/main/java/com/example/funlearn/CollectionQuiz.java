@@ -75,6 +75,13 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
                 this.question = new Question(this.questions);
                 break;
 
+            case MainActivity.LEGUMES:
+                this.questions = new String[]{"betterave", "champignons", "haricots", "poivron",
+                        "oignon", "carotte", "courgette", "aubergine", "concombre", "pommedeterre",
+                        "tomate", "epinards", "brocoli", "mais"};
+                this.question = new Question(this.questions);
+                break;
+
         }
     }
 
