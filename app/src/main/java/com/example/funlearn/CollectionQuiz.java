@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +20,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 {
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three;
+    ImageView[] circleY = new ImageView[10];
 
     private String[] questions;
 
@@ -28,6 +30,9 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     private int num;
 
     public static int max_quest = 10;
+
+
+    private MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +50,12 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         btn_two.setOnClickListener(this);
         btn_three = (ImageButton)findViewById(R.id.btn_three);
         btn_three.setOnClickListener(this);
-        //btn_four = (ImageButton)findViewById(R.id.btn_four);
-        //btn_four.setOnClickListener(this);
+
+        for(int i =0; i<10; i++){
+            circleY[i] = findViewById(getResourceId(this, "id", "circley"+(i+1)));
+        }
+
+
         audio = (ImageButton)findViewById(R.id.audio);
         audio.setOnClickListener(this);
 
@@ -122,19 +131,11 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
 
-           /* case R.id.btn_four:
-                if(btn_four.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    Toast.makeText(FruitsQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion();
-                }else{
-                    replayQuestion();
-                }
-
-                break;*/
         }
     }
 
     private void GameEnd(){
+        music.stop();
         finish();
 
     }
@@ -154,8 +155,6 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         Collections.shuffle(shuffledQuestions);
     }
 
-    private MediaPlayer music;
-
     private void replayQuestion(){
         if(music == null || !music.isPlaying()){
             music = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
@@ -173,6 +172,10 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
     // Sets quiz for the next question
     private void NextQuestion(){
+        if(num>0){
+            circleY[(10-num)].setVisibility(View.VISIBLE);
+        }
+
         if (shuffledQuestions.size()==num || num==max_quest){
             this.finish();
         }else{

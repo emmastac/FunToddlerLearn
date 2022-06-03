@@ -7,64 +7,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.funlearn.MainActivity">
 
+
     <ImageButton
         android:id="@+id/btn_one"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="120dp"
         android:layout_marginBottom="10dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:scaleType="fitCenter"
-        android:background="@android:color/white"
         android:adjustViewBounds="true"
+        android:background="@color/purple_200"
+        android:contentDescription="@string/fruits_photo_desc"
         android:padding="5dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/btn_two"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_two"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="120dp"
         android:layout_marginBottom="10dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:scaleType="fitCenter"
-        android:background="@android:color/white"
         android:adjustViewBounds="true"
+        android:background="@color/purple_200"
+        android:contentDescription="@string/fruits_photo_desc"
         android:padding="5dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/btn_three"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_three"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="120dp"
         android:layout_marginBottom="60dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:scaleType="fitCenter"
-        android:background="@android:color/white"
         android:adjustViewBounds="true"
+        android:background="@color/purple_200"
+        android:contentDescription="@string/fruits_photo_desc"
         android:padding="5dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="ImageContrastCheck" />
-    <!--        app:layout_constraintBottom_toTopOf="@+id/btn_four"-->
-
-    <!--<ImageButton
-        android:id="@+id/btn_four"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="40dp"
-        android:contentDescription="@string/fruits_photo_desc"
-        android:scaleType="fitCenter"
-        android:background="@android:color/white"
-        android:adjustViewBounds="true"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="ImageContrastCheck" />-->
 
     <ImageButton
         android:id="@+id/audio"
@@ -76,6 +61,166 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    Right side -->
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/sideFlow_height"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="33dp"
+        app:constraint_referenced_ids="circle1,circle2,circle3,circle4,circle5,circle6,circle7,circle8,circle9,circle10"
+        app:flow_verticalGap="5dp"
+        app:flow_wrapMode="chain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/circle1"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle2"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle3"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle4"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle5"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle6"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle7"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle8"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle9"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle10"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        app:srcCompat="@drawable/circle" />
+
+
+    <!-- Empty circles -->
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/sideFlow_height"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="33dp"
+        app:constraint_referenced_ids="circley1,circley2,circley3,circley4,circley5,circley6,circley7,circley8,circley9,circley10"
+        app:flow_verticalGap="5dp"
+        app:flow_wrapMode="chain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/circley1"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley2"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley3"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley4"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley5"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley6"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley7"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley8"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley9"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+    <ImageView
+        android:id="@+id/circley10"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/circle_yellow" />
+
+
     <!--
 
     <TextView
