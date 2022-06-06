@@ -1,18 +1,18 @@
 package com.example.funlearn;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -22,7 +22,9 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     ImageButton btn_one, btn_two, btn_three;
     ImageView[] circleY = new ImageView[10];
 
+    private boolean foundCorrect = false;
     private String[] questions;
+    private boolean clicksEnabled = true;
 
     private Question question;
 
@@ -30,9 +32,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     private int num;
 
     public static int max_quest = 10;
-
-
-    private MediaPlayer music;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,6 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         Bundle extras = getIntent().getExtras();
         String collection = extras.getString(MainActivity.EXTRA_MESSAGE);
         loadCollection(collection);
-        //random = new Random();
 
         btn_one = (ImageButton)findViewById(R.id.btn_one);
         btn_one.setOnClickListener(this);
@@ -54,7 +53,6 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         for(int i =0; i<10; i++){
             circleY[i] = findViewById(getResourceId(this, "id", "circley"+(i+1)));
         }
-
 
         audio = (ImageButton)findViewById(R.id.audio);
         audio.setOnClickListener(this);
@@ -94,9 +92,55 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @Override
+    protected void onStop (){
+        super.onStop();
+        mediaPlayer.release();
+        mediaPlayer = null;
+    }
+
+    //  Set background red, disable clicks until audio replays, replay audio
+    public void wrongAnswer(ImageButton btn){
+
+        btn.setBackgroundColor(Color.RED);
+        disableClicks();
+        replayQuestion();
+    }
+
+
+    public void rightAnswer(ImageButton btn){
+        foundCorrect = true;
+        btn.setBackgroundColor(Color.GREEN);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                NextQuestion();
+            }
+        }, 1500);
+    }
+
+    public void handleAnswer(ImageButton btn){
+
+        btn.setEnabled(false);
+        if(mediaPlayer.isPlaying()){
+            disableClicks();
+        }
+        if(btn.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
+            //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
+            //System.out.println(" "+btn_one.getDrawable().);
+            rightAnswer(btn);
+        }else{
+            wrongAnswer(btn);
+        }
+    }
 
     @Override
     public void onClick(View v) {
+        //System.out.print(clicksEnabled);
+//        if(!clicksEnabled || foundCorrect){
+//            return;
+//        }
         switch (v.getId()){
 
             case R.id.audio:
@@ -105,37 +149,26 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btn_one:
-                if(btn_one.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
-                    //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion();
-                }else{
-                    replayQuestion();
-                }
+
+                handleAnswer(btn_one);
                 break;
 
             case R.id.btn_two:
-                if(btn_two.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion();
-                }else{
-                    replayQuestion();
-                }
+
+                handleAnswer(btn_two);
                 break;
 
             case R.id.btn_three:
-                if(btn_three.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable",answer)).getConstantState())){
-                    //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
-                    NextQuestion();
-                }else{
-                    replayQuestion();
-                }
+
+                handleAnswer(btn_three);
                 break;
 
         }
     }
 
     private void GameEnd(){
-        music.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
         finish();
 
     }
@@ -155,23 +188,57 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         Collections.shuffle(shuffledQuestions);
     }
 
+    private void enableClicks(){
+        if(!btn_one.getBackground().equals(Color.RED)){
+            btn_one.setEnabled(true);
+        }
+        if(!btn_two.getBackground().equals(Color.RED)){
+            btn_two.setEnabled(true);
+        }
+        if(!btn_three.getBackground().equals(Color.RED)){
+            btn_three.setEnabled(true);
+        }
+        audio.setEnabled(true);
+//        clicksEnabled = true;
+    }
+    private void disableClicks(){
+        btn_one.setEnabled(false);
+        btn_two.setEnabled(false);
+        btn_three.setEnabled(false);
+        audio.setEnabled(false);
+//        clicksEnabled = false;
+    }
+
     private void replayQuestion(){
-        if(music == null || !music.isPlaying()){
-            music = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
-            music.start();
+        if(mediaPlayer == null || !mediaPlayer.isPlaying()){
+            mediaPlayer.start();
         }
     }
 
     private void playQuestion(){
-        while(music!=null && music.isPlaying()){
+        while(mediaPlayer !=null && mediaPlayer.isPlaying()){
         }
-        music = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
-        music.start();
+        mediaPlayer = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if(!foundCorrect){
+                    enableClicks();
+                }
 
+            }
+        });
+        mediaPlayer.start();
     }
 
     // Sets quiz for the next question
     private void NextQuestion(){
+        foundCorrect = false;
+        btn_one.setBackgroundColor(Color.GRAY);
+        btn_two.setBackgroundColor(Color.GRAY);
+        btn_three.setBackgroundColor(Color.GRAY);
+        enableClicks();
+
         if(num>0){
             circleY[(10-num)].setVisibility(View.VISIBLE);
         }
