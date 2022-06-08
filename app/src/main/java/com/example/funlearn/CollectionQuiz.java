@@ -2,7 +2,11 @@ package com.example.funlearn;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,6 +21,10 @@ import java.util.Collections;
 
 public class CollectionQuiz extends AppCompatActivity implements View.OnClickListener
 {
+    private AudioEffects audioEffects ;
+
+    private AudioManager audioManager;
+
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three;
     TextView questionView;
@@ -38,6 +46,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_quiz);
 
+        audioEffects = new AudioEffects();
         Bundle extras = getIntent().getExtras();
         String collection = extras.getString(MainActivity.EXTRA_MESSAGE);
         loadCollection(collection);
@@ -58,6 +67,9 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
         questionView = (TextView)findViewById(R.id.question);
 
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        audioEffects = new AudioEffects();
+        audioEffects.createAudio(this, audioManager);
         shuffleQuestions();
         num = 0;
         NextQuestion();
@@ -85,8 +97,6 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
                 this.questions = CollectionsUtils.courses;
                 this.question = new Question(this.questions);
                 break;
-
-
         }
     }
 
@@ -100,6 +110,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     //  Set background red, disable clicks until audio replays, replay audio
     public void wrongAnswer(ImageButton btn){
 
+        audioEffects.playError();
         btn.setBackground(getDrawable(R.drawable.btn_border_red));
         replayQuestion();
     }
@@ -107,6 +118,8 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
     public void rightAnswer(ImageButton btn){
         foundCorrect = true;
+        disableClicks();
+        audioEffects.playCorrect();
         btn.setBackground(getDrawable(R.drawable.btn_border_green));
 
         new Handler().postDelayed(new Runnable() {
@@ -114,12 +127,11 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
             public void run() {
                 NextQuestion();
             }
-        }, 1500);
+        }, 500);
     }
 
     public void handleAnswer(ImageButton btn){
 
-        disableClicks();
         if(btn.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
             //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
             //System.out.println(" "+btn_one.getDrawable().);
