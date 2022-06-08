@@ -8,11 +8,11 @@ import java.util.Random;
 
 public class Question {
 
-    public String[] correctAnswer;
+    public String[][] correctAnswer;
     public String[][] choices;
     public static int choiceSize = 3;
 
-    public Question(String[] q){
+    public Question(String[][] q){
         this.correctAnswer = q;
 
         // Construct choices array by randomly picking items from collection
@@ -20,12 +20,12 @@ public class Question {
         Random rand = new Random();
         for(int i =0; i<q.length; i++){
             ArrayList<String> iChoice = new ArrayList<String>(choiceSize);
-            iChoice.add(q[i]);
+            iChoice.add(q[i][0]);
 
             while(iChoice.size()<choiceSize){
                 int next = rand.nextInt(this.correctAnswer.length);
-                if(!iChoice.contains(q[next])){
-                    iChoice.add(q[next]);
+                if(!iChoice.contains(q[next][0])){
+                    iChoice.add(q[next][0]);
                 }
             }
 
@@ -47,7 +47,7 @@ public class Question {
         return choices[a][2];
     }
 
-    public String getCorrectAnswer(int a){
+    public String[] getCorrectAnswer(int a){
         return correctAnswer[a];
     }
 }

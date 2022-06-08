@@ -12,8 +12,8 @@
        android:layout_marginTop="16dp"
        android:layout_marginLeft="16dp"
        android:layout_marginRight="16dp"
-       app:constraint_referenced_ids="fruitsButton,animalsButton,legumesButton,bananeButton"
-       app:flow_verticalGap="0dp"
+       app:constraint_referenced_ids="fruitsButton,animalsButton,legumesButton,coursesButton"
+       app:flow_verticalGap="5dp"
        app:flow_wrapMode="aligned"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
        tools:ignore="SpeakableTextPresentCheck" />
 
    <ImageButton
-       android:id="@+id/bananeButton"
+       android:id="@+id/coursesButton"
        android:layout_width="120dp"
        android:layout_height="120dp"
        android:layout_marginTop="28dp"
@@ -43,7 +43,7 @@
        android:contentDescription="@string/animals_photo_desc"
        android:padding="3dp"
        android:scaleType="fitCenter"
-       android:src="@drawable/banane"
+       android:src="@drawable/courses"
        tools:ignore="SpeakableTextPresentCheck" />
 
    <ImageButton

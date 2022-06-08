@@ -5,14 +5,13 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,11 +19,11 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 {
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three;
+    TextView questionView;
     ImageView[] circleY = new ImageView[10];
 
     private boolean foundCorrect = false;
-    private String[] questions;
-    private boolean clicksEnabled = true;
+    private String[][] questions;
 
     private Question question;
 
@@ -57,7 +56,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         audio = (ImageButton)findViewById(R.id.audio);
         audio.setOnClickListener(this);
 
-        //tv_question = (TextView)findViewById(R.id.tv_question);
+        questionView = (TextView)findViewById(R.id.question);
 
         shuffleQuestions();
         num = 0;
@@ -68,26 +67,25 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         switch (collectionName){
 
             case MainActivity.FRUITS:
-                this.questions = new String[]{"pomme", "banane", "cerise", "abricot", "ananas", "citron",
-                        "fraise", "framboise", "orange", "poire", "pasteque", "raisin"};
+                this.questions = CollectionsUtils.fruits;
                 this.question = new Question(this.questions);
                 break;
 
             case MainActivity.ANIMALS:
-                this.questions = new String[]{"serpent", "elephant", "chevre", "poisson", "chameau",
-                        "grenouille", "girafe", "ours", "herisson", "hibou", "cerf", "loup",
-                        "oiseau", "kangourou", "ecureuil", "renard", "cheval", "poule", "coq",
-                        "canard", "cochon", "mouton", "vache", "perroquet", "souris", "tortue",
-                        "lapin", "chat", "chien"};
+                this.questions = CollectionsUtils.animals;
                 this.question = new Question(this.questions);
                 break;
 
             case MainActivity.LEGUMES:
-                this.questions = new String[]{"betterave", "champignons", "haricots", "poivron",
-                        "oignon", "carotte", "courgette", "aubergine", "concombre", "pommedeterre",
-                        "tomate", "epinards", "brocoli", "mais"};
+                this.questions = CollectionsUtils.legumes;
                 this.question = new Question(this.questions);
                 break;
+
+            case MainActivity.COURSES:
+                this.questions = CollectionsUtils.courses;
+                this.question = new Question(this.questions);
+                break;
+
 
         }
     }
@@ -102,15 +100,14 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     //  Set background red, disable clicks until audio replays, replay audio
     public void wrongAnswer(ImageButton btn){
 
-        btn.setBackgroundColor(Color.RED);
-        disableClicks();
+        btn.setBackground(getDrawable(R.drawable.btn_border_red));
         replayQuestion();
     }
 
 
     public void rightAnswer(ImageButton btn){
         foundCorrect = true;
-        btn.setBackgroundColor(Color.GREEN);
+        btn.setBackground(getDrawable(R.drawable.btn_border_green));
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -122,10 +119,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
     public void handleAnswer(ImageButton btn){
 
-        btn.setEnabled(false);
-        if(mediaPlayer.isPlaying()){
-            disableClicks();
-        }
+        disableClicks();
         if(btn.getDrawable().getConstantState().equals(this.getResources().getDrawable(getResourceId(this, "drawable", answer)).getConstantState())){
             //Toast.makeText(CollectionQuiz.this, "You Are Correct", Toast.LENGTH_SHORT).show();
             //System.out.println(" "+btn_one.getDrawable().);
@@ -137,6 +131,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        System.out.println("click");
         //System.out.print(clicksEnabled);
 //        if(!clicksEnabled || foundCorrect){
 //            return;
@@ -189,13 +184,17 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     }
 
     private void enableClicks(){
-        if(!btn_one.getBackground().equals(Color.RED)){
+        // enable all unless they are already chosen (wrong)
+        if(!btn_one.getBackground().getConstantState().equals(getDrawable(R.drawable.btn_border_red).getConstantState())){
+            //if(!btn_one.getBackground().equals(Color.RED)){
             btn_one.setEnabled(true);
         }
-        if(!btn_two.getBackground().equals(Color.RED)){
+        if(!btn_two.getBackground().getConstantState().equals(getDrawable(R.drawable.btn_border_red).getConstantState())){
+
             btn_two.setEnabled(true);
         }
-        if(!btn_three.getBackground().equals(Color.RED)){
+        if(!btn_three.getBackground().getConstantState().equals(getDrawable(R.drawable.btn_border_red).getConstantState())){
+
             btn_three.setEnabled(true);
         }
         audio.setEnabled(true);
@@ -234,9 +233,10 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     // Sets quiz for the next question
     private void NextQuestion(){
         foundCorrect = false;
-        btn_one.setBackgroundColor(Color.GRAY);
-        btn_two.setBackgroundColor(Color.GRAY);
-        btn_three.setBackgroundColor(Color.GRAY);
+        btn_one.setBackground(getDrawable(R.drawable.btn_border_black));
+        btn_two.setBackground(getDrawable(R.drawable.btn_border_black));
+        btn_three.setBackground(getDrawable(R.drawable.btn_border_black));
+        // this must allways follow the background reset
         enableClicks();
 
         if(num>0){
@@ -249,9 +249,10 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
             int nextIndex = shuffledQuestions.get(num);
             num += 1;
 
-            answer = this.question.getCorrectAnswer(nextIndex);
+            answer = this.question.getCorrectAnswer(nextIndex)[0];
             playQuestion();
-
+            String visualCue = this.question.getCorrectAnswer(nextIndex)[1];
+            questionView.setText(visualCue);
             btn_one.setImageResource(getResourceId(this, "drawable", question.getchoice1(nextIndex)));
             btn_two.setImageResource(getResourceId(this, "drawable",question.getchoice2(nextIndex)));
             btn_three.setImageResource(getResourceId(this, "drawable",question.getchoice3(nextIndex)));

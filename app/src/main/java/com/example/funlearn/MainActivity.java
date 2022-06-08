@@ -14,8 +14,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String FRUITS = "fruits";
     public static final String ANIMALS = "animaux";
     public static final String LEGUMES = "legumes";
+    public static final String COURSES = "courses";
 
-    ImageButton fruitsButton, animalsButton, legumesButton;
+    ImageButton fruitsButton, animalsButton, legumesButton, coursesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animalsButton.setOnClickListener(this);
         legumesButton = (ImageButton)findViewById(R.id.legumesButton);
         legumesButton.setOnClickListener(this);
+        coursesButton = (ImageButton)findViewById(R.id.coursesButton);
+        coursesButton.setOnClickListener(this);
     }
 
 
@@ -50,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.legumesButton:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, LEGUMES);
+                startActivity(intent);
+                break;
+
+            case R.id.coursesButton:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, COURSES);
                 startActivity(intent);
                 break;
         }

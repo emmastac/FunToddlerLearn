@@ -8,6 +8,23 @@
     tools:context="com.example.funlearn.MainActivity">
 
 
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/question"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:text="Something"
+        android:textColor="#FF9800"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_one"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <ImageButton
         android:id="@+id/btn_one"
         android:layout_width="200dp"
@@ -58,6 +75,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/loudspeaker"
         android:contentDescription="@string/loudspeaker"
+        app:layout_constraintBottom_toTopOf="@+id/question"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -219,6 +237,7 @@
         android:layout_height="@dimen/circle_size"
         android:visibility="invisible"
         app:srcCompat="@drawable/circle_yellow" />
+
 
 
     <!--
