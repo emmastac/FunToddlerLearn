@@ -83,5 +83,56 @@ public class CollectionsUtils {
             {"lait", "le lait"}
     };
 
+    public static final String[][] visage = {
+            {"moustache", "le moustache"},
+            {"barbe", "la barbe"},
+            {"dents", "les dents"},
+            {"sourcil", "le sourcil"},
+            {"langue", "la langue"},
+            {"menton", "le menton"},
+            {"levre", "la levre"},
+            {"front", "le front"},
+            {"joue", "la joue"},
+            {"cheveux", "les cheveux"},
+            {"oreille", "l'oreille"},
+            {"nez", "le nez"},
+            {"bouche", "la bouche"},
+            {"yeux", "les yeux"}
+    };
+
+    public static final String[][] vetements = {
+            {"gants", "les gants"},
+            {"peignoir", "le peignoir"},
+            {"echarpe", "une echarpe"},
+            {"chapeau", "le chapeau"},
+            {"bonnet", "le bonnet"},
+            {"casquette", "la casquette"},
+            {"chaussettes", "les chaussettes"},
+            {"chaussures", "les chaussures"},
+            {"robe", "la robe"},
+            {"blouse", "la blouse"},
+            {"pantalon", "le pantalon"},
+            {"shorts", "les shorts"},
+            {"chemise", "la chemise"},
+            {"jupe", "la jupe"}
+    };
+
+    public static final String[][] corps = {
+            {"tete", "la tete"},
+            {"poitrine", "la poitrine"},
+            {"fesses", "les fesses"},
+            {"epaule", "l'epaule"},
+            {"orteil", "un orteil"},
+            {"genou", "le genou"},
+            {"ongle", "un ongle"},
+            {"pied", "le pied"},
+            {"cou", "le cou"},
+            {"dos", "le dos"},
+            {"jambe", "la jambe"},
+            {"doigt", "le doigt"},
+            {"main", "la main"},
+            {"bras", "le bras"}
+    };
+
 
 }

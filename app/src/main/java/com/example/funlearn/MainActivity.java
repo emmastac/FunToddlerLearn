@@ -15,22 +15,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String ANIMALS = "animaux";
     public static final String LEGUMES = "legumes";
     public static final String COURSES = "courses";
+    public static final String VISAGE = "visage";
+    public static final String CORPS = "corps";
+    public static final String VETEMENTS = "vetements";
+    public static final String PLAGE = "plage";
 
-    ImageButton fruitsButton, animalsButton, legumesButton, coursesButton;
+    ImageButton fruitsBtn, animalsBtn, legumesBtn, coursesBtn, visageBtn, corpsBtn, vetementsBtn,
+            plageBtn;
+
+    private void initiateButton(ImageButton btn, int id){
+        btn = (ImageButton)findViewById(id);
+        btn.setOnClickListener(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fruitsButton = (ImageButton)findViewById(R.id.fruitsButton);
-        fruitsButton.setOnClickListener(this);
-        animalsButton = (ImageButton)findViewById(R.id.animalsButton);
-        animalsButton.setOnClickListener(this);
-//        legumesButton = (ImageButton)findViewById(R.id.legumesButton);
-//        legumesButton.setOnClickListener(this);
-//        coursesButton = (ImageButton)findViewById(R.id.coursesButton);
-//        coursesButton.setOnClickListener(this);
+        initiateButton(fruitsBtn, R.id.fruitsBtn);
+        initiateButton(animalsBtn, R.id.animalsBtn);
+        initiateButton(legumesBtn, R.id.legumesBtn);
+        initiateButton(coursesBtn, R.id.coursesBtn);
+        initiateButton(visageBtn, R.id.visageBtn);
+        initiateButton(vetementsBtn, R.id.vetementsBtn);
+        initiateButton(corpsBtn, R.id.corpsBtn);
+        initiateButton(plageBtn, R.id.plageBtn);
+
+
     }
 
 
@@ -38,29 +50,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.fruitsButton:
+            case R.id.fruitsBtn:
                 Intent intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, FRUITS);
                 startActivity(intent);
                 break;
 
-            case R.id.animalsButton:
+            case R.id.animalsBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, ANIMALS);
                 startActivity(intent);
                 break;
 
-//            case R.id.legumesButton:
-//                intent = new Intent(this, CollectionQuiz.class);
-//                intent.putExtra(EXTRA_MESSAGE, LEGUMES);
-//                startActivity(intent);
-//                break;
-//
-//            case R.id.coursesButton:
-//                intent = new Intent(this, CollectionQuiz.class);
-//                intent.putExtra(EXTRA_MESSAGE, COURSES);
-//                startActivity(intent);
-//                break;
+            case R.id.legumesBtn:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, LEGUMES);
+                startActivity(intent);
+                break;
+
+            case R.id.coursesBtn:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, COURSES);
+                startActivity(intent);
+                break;
+
+            case R.id.visageBtn:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, VISAGE);
+                startActivity(intent);
+                break;
+
+            case R.id.corpsBtn:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, CORPS);
+                startActivity(intent);
+                break;
+
+            case R.id.vetementsBtn:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, VETEMENTS);
+                startActivity(intent);
+                break;
+
+            case R.id.plageBtn:
+                intent = new Intent(this, CollectionQuiz.class);
+                intent.putExtra(EXTRA_MESSAGE, PLAGE);
+                startActivity(intent);
+                break;
         }
     }
 

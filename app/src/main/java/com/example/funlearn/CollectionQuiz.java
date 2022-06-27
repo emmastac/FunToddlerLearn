@@ -29,7 +29,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three;
     TextView questionView;
-    public static int max_quest = 2;
+    public static int max_quest = 10;
     ImageView[] circleY = new ImageView[10];
 
     private boolean foundCorrect = false;
@@ -102,6 +102,26 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
                 this.questions = CollectionsUtils.courses;
                 this.question = new Question(this.questions);
                 break;
+
+            case MainActivity.VISAGE:
+                this.questions = CollectionsUtils.visage;
+                this.question = new Question(this.questions);
+                break;
+
+            case MainActivity.VETEMENTS:
+                this.questions = CollectionsUtils.vetements;
+                this.question = new Question(this.questions);
+                break;
+
+            case MainActivity.CORPS:
+                this.questions = CollectionsUtils.corps;
+                this.question = new Question(this.questions);
+                break;
+
+//            case MainActivity.PLAGE:
+//                this.questions = CollectionsUtils.plage;
+//                this.question = new Question(this.questions);
+//                break;
         }
     }
 
