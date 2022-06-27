@@ -94,7 +94,7 @@ public class CollectionsUtils {
             {"front", "le front"},
             {"joue", "la joue"},
             {"cheveux", "les cheveux"},
-            {"oreille", "l'oreille"},
+            {"oreille", "l' oreille"},
             {"nez", "le nez"},
             {"bouche", "la bouche"},
             {"yeux", "les yeux"}
@@ -121,7 +121,7 @@ public class CollectionsUtils {
             {"tete", "la tete"},
             {"poitrine", "la poitrine"},
             {"fesses", "les fesses"},
-            {"epaule", "l'epaule"},
+            {"epaule", "l' epaule"},
             {"orteil", "un orteil"},
             {"genou", "le genou"},
             {"ongle", "un ongle"},

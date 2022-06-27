@@ -1,6 +1,7 @@
 package com.example.funlearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,10 +23,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton fruitsBtn, animalsBtn, legumesBtn, coursesBtn, visageBtn, corpsBtn, vetementsBtn,
             plageBtn;
+    CardView cvFruits, cvAnimals, cvLegumes, cvCourses, cvVisage, cvCorps, cvVetements, cvPlage;
 
     private void initiateButton(ImageButton btn, int id){
         btn = (ImageButton)findViewById(id);
         btn.setOnClickListener(this);
+    }
+
+    private void initiateCardView(CardView cv, int id){
+        cv = (CardView) findViewById(id);
+        cv.setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +49,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initiateButton(corpsBtn, R.id.corpsBtn);
         initiateButton(plageBtn, R.id.plageBtn);
 
+        initiateCardView(cvFruits, R.id.cvFruits);
+        initiateCardView(cvAnimals, R.id.cvAnimals);
+        initiateCardView(cvLegumes, R.id.cvLegumes);
+        initiateCardView(cvCourses, R.id.cvCourses);
+        initiateCardView(cvVisage, R.id.cvVisage);
+        initiateCardView(cvVetements, R.id.cvVetements);
+        initiateCardView(cvCorps, R.id.cvCorps);
+        initiateCardView(cvPlage, R.id.cvPlage);
+
 
     }
 
@@ -50,12 +66,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
 
+            case R.id.cvFruits:
             case R.id.fruitsBtn:
                 Intent intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, FRUITS);
                 startActivity(intent);
                 break;
 
+            case R.id.cvAnimals:
             case R.id.animalsBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, ANIMALS);
@@ -63,35 +81,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.legumesBtn:
+            case R.id.cvLegumes:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, LEGUMES);
                 startActivity(intent);
                 break;
 
+            case R.id.cvCourses:
             case R.id.coursesBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, COURSES);
                 startActivity(intent);
                 break;
 
+            case R.id.cvVisage:
             case R.id.visageBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, VISAGE);
                 startActivity(intent);
                 break;
 
+            case R.id.cvCorps:
             case R.id.corpsBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, CORPS);
                 startActivity(intent);
                 break;
 
+            case R.id.cvVetements:
             case R.id.vetementsBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, VETEMENTS);
                 startActivity(intent);
                 break;
 
+            case R.id.cvPlage:
             case R.id.plageBtn:
                 intent = new Intent(this, CollectionQuiz.class);
                 intent.putExtra(EXTRA_MESSAGE, PLAGE);
