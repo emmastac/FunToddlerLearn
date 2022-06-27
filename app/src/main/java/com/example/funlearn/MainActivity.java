@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fruitsButton.setOnClickListener(this);
         animalsButton = (ImageButton)findViewById(R.id.animalsButton);
         animalsButton.setOnClickListener(this);
-        legumesButton = (ImageButton)findViewById(R.id.legumesButton);
-        legumesButton.setOnClickListener(this);
-        coursesButton = (ImageButton)findViewById(R.id.coursesButton);
-        coursesButton.setOnClickListener(this);
+//        legumesButton = (ImageButton)findViewById(R.id.legumesButton);
+//        legumesButton.setOnClickListener(this);
+//        coursesButton = (ImageButton)findViewById(R.id.coursesButton);
+//        coursesButton.setOnClickListener(this);
     }
 
 
@@ -50,17 +50,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
 
-            case R.id.legumesButton:
-                intent = new Intent(this, CollectionQuiz.class);
-                intent.putExtra(EXTRA_MESSAGE, LEGUMES);
-                startActivity(intent);
-                break;
-
-            case R.id.coursesButton:
-                intent = new Intent(this, CollectionQuiz.class);
-                intent.putExtra(EXTRA_MESSAGE, COURSES);
-                startActivity(intent);
-                break;
+//            case R.id.legumesButton:
+//                intent = new Intent(this, CollectionQuiz.class);
+//                intent.putExtra(EXTRA_MESSAGE, LEGUMES);
+//                startActivity(intent);
+//                break;
+//
+//            case R.id.coursesButton:
+//                intent = new Intent(this, CollectionQuiz.class);
+//                intent.putExtra(EXTRA_MESSAGE, COURSES);
+//                startActivity(intent);
+//                break;
         }
     }
 

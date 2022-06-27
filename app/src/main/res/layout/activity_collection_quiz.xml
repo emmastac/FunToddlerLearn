@@ -8,6 +8,7 @@
     tools:context="com.example.funlearn.MainActivity">
 
 
+
     <TextView
         android:id="@+id/question"
         android:layout_width="wrap_content"
@@ -240,14 +241,14 @@
 
 
 
-    <!--
-
-    <TextView
-        android:id="@+id/tv_question"
+    <VideoView
+        android:id="@+id/videoView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/question" />
-
--->
+        android:layout_height="500dp"
+        android:visibility="invisible"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

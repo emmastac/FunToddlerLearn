@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +29,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     ImageButton audio;
     ImageButton btn_one, btn_two, btn_three;
     TextView questionView;
+    public static int max_quest = 2;
     ImageView[] circleY = new ImageView[10];
 
     private boolean foundCorrect = false;
@@ -38,8 +40,8 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     private String answer;
     private int num;
 
-    public static int max_quest = 10;
     private MediaPlayer mediaPlayer;
+    private VideoEffects video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,9 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         audio.setOnClickListener(this);
 
         questionView = (TextView)findViewById(R.id.question);
+
+        video = new VideoEffects();
+        video.createVideo(this);
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         audioEffects = new AudioEffects();
@@ -143,11 +148,6 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        System.out.println("click");
-        //System.out.print(clicksEnabled);
-//        if(!clicksEnabled || foundCorrect){
-//            return;
-//        }
         switch (v.getId()){
 
             case R.id.audio:
@@ -256,7 +256,8 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         }
 
         if (shuffledQuestions.size()==num || num==max_quest){
-            this.finish();
+            video.playVideo();
+            //this.finish();
         }else{
             int nextIndex = shuffledQuestions.get(num);
             num += 1;

@@ -1,99 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   <androidx.constraintlayout.helper.widget.Flow
-       android:layout_width="0dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f3f3f3"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+   <androidx.gridlayout.widget.GridLayout
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       android:layout_marginLeft="16dp"
-       android:layout_marginRight="16dp"
-       app:constraint_referenced_ids="fruitsButton,animalsButton,legumesButton,coursesButton"
-       app:flow_verticalGap="5dp"
-       app:flow_wrapMode="aligned"
+       android:layout_margin="10dp"
+       app:columnCount="2"
+       app:rowCount="4"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent">
 
-   </androidx.constraintlayout.helper.widget.Flow>
 
-   <ImageButton
-       android:id="@+id/animalsButton"
-       android:layout_width="120dp"
-       android:layout_height="120dp"
-       android:adjustViewBounds="true"
-       android:background="@android:color/holo_orange_light"
-       android:contentDescription="@string/animals_photo_desc"
-       android:padding="3dp"
-       android:scaleType="fitCenter"
-       android:src="@drawable/animaux"
-       tools:ignore="SpeakableTextPresentCheck" />
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvFruits"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          android:layout_margin="10dp"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1">
 
-   <ImageButton
-       android:id="@+id/coursesButton"
-       android:layout_width="120dp"
-       android:layout_height="120dp"
-       android:layout_marginTop="28dp"
-       android:adjustViewBounds="true"
-       android:background="@android:color/holo_orange_light"
-       android:contentDescription="@string/animals_photo_desc"
-       android:padding="3dp"
-       android:scaleType="fitCenter"
-       android:src="@drawable/courses"
-       tools:ignore="SpeakableTextPresentCheck" />
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
-   <ImageButton
-       android:id="@+id/fruitsButton"
-       android:layout_width="120dp"
-       android:layout_height="120dp"
-       android:adjustViewBounds="true"
-       android:background="@android:color/holo_orange_light"
-       android:contentDescription="@string/fruits_photo_desc"
-       android:padding="3dp"
-       android:scaleType="fitCenter"
-       android:src="@drawable/fruits"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-       tools:ignore="SpeakableTextPresentCheck" />
+            <ImageButton
+                android:id="@+id/fruitsButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/fruits"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-   <!--app:layout_constraintHorizontal_bias="0.0"
-   app:layout_constraintTop_toTopOf="parent"
-   app:layout_constraintLeft_toLeftOf="parent"
-   app:layout_constraintRight_toRightOf="parent"-->
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
 
-   <!-- android:layout_width="0dp"
-   android:layout_height="wrap_content"
-   app:layout_constraintStart_toStartOf="parent"
-   app:layout_constraintEnd_toEndOf="parent"
-   app:layout_constraintTop_toTopOf="parent"-->
+         <androidx.cardview.widget.CardView
+             android:id="@+id/cvAnimals"
+             android:layout_width="0dp"
+             android:layout_height="@dimen/card_height"
+             app:layout_columnWeight="1"
+             app:layout_rowWeight="1"
+            app:cardCornerRadius="15dp"
+             app:cardElevation="0dp"
+             android:layout_margin="10dp" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-   <ImageButton
-       android:id="@+id/legumesButton"
-       android:layout_width="120dp"
-       android:layout_height="120dp"
-       android:layout_marginTop="28dp"
-       android:adjustViewBounds="true"
-       android:background="@android:color/holo_orange_light"
-       android:contentDescription="@string/animals_photo_desc"
-       android:padding="3dp"
-       android:scaleType="fitCenter"
-       android:src="@drawable/legumes"
-       tools:ignore="SpeakableTextPresentCheck" />
+               <ImageButton
+                   android:id="@+id/animalsButton"
+                   android:layout_width="@dimen/main_imageButton_sides"
+                   android:layout_height="@dimen/main_imageButton_sides"
+                   android:padding="0dp"
+                   android:layout_centerInParent="true"
+                   android:scaleType="fitCenter"
+                   android:src="@drawable/animaux"
+                   tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+         </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvVegetables"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/card_height"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="0dp"
+                android:layout_margin="10dp" >
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                  <ImageButton
+                      android:id="@+id/legumesButton"
+                      android:layout_width="@dimen/main_imageButton_sides"
+                      android:layout_height="@dimen/main_imageButton_sides"
+                      android:padding="0dp"
+                      android:layout_centerInParent="true"
+                      android:scaleType="fitCenter"
+                      android:src="@drawable/legumes"
+                      tools:ignore="SpeakableTextPresentCheck" />
+
+               </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
-   <!--app:layout_constraintHorizontal_bias="0.0"
-   app:layout_constraintTop_toBottomOf="@+id/animalsButton"
-   app:layout_constraintLeft_toLeftOf="parent"
-   app:layout_constraintRight_toRightOf="parent"-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCourses"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/card_height"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="0dp"
+                android:layout_margin="10dp" >
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                  <ImageButton
+                      android:id="@+id/coursesButton"
+                      android:layout_width="@dimen/main_imageButton_sides"
+                      android:layout_height="@dimen/main_imageButton_sides"
+                      android:padding="0dp"
+                      android:layout_centerInParent="true"
+                      android:scaleType="fitCenter"
+                      android:src="@drawable/courses"
+                      tools:ignore="SpeakableTextPresentCheck" />
+
+               </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
-   <!--app:layout_constraintHorizontal_bias="0.0"
-   app:layout_constraintTop_toBottomOf="@+id/appleButton"
-   app:layout_constraintLeft_toLeftOf="parent"
-   app:layout_constraintRight_toRightOf="parent"-->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvCourses"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          android:layout_margin="10dp" >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/coursesButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courses"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvCourses"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          android:layout_margin="10dp" >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/coursesButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courses"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
+
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvCourses"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          android:layout_margin="10dp" >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/coursesButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courses"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvCourses"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          android:layout_margin="10dp" >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/coursesButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courses"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvCourses"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          android:layout_margin="10dp" >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/coursesButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courses"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/cvCourses"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/card_height"
+          app:layout_columnWeight="1"
+          app:layout_rowWeight="1"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="0dp"
+          android:layout_margin="10dp" >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/coursesButton"
+                android:layout_width="@dimen/main_imageButton_sides"
+                android:layout_height="@dimen/main_imageButton_sides"
+                android:padding="0dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courses"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+         </RelativeLayout>
+      </androidx.cardview.widget.CardView>
+
+   </androidx.gridlayout.widget.GridLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
