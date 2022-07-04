@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cvCouleurs:
             case R.id.couleursBtn:
                 intent = new Intent(this, CollectionQuiz.class);
-                intent.putExtra(EXTRA_MESSAGE, COULEURS);
+                intent.putExtra(EXTRA_MESSAGE, PLAGE);
                 startActivity(intent);
                 break;
         }
