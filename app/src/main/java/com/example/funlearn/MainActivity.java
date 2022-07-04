@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String CORPS = "corps";
     public static final String VETEMENTS = "vetements";
     public static final String PLAGE = "plage";
+    public static final String COULEURS = "couleurs";
+
 
     ImageButton fruitsBtn, animalsBtn, legumesBtn, coursesBtn, visageBtn, corpsBtn, vetementsBtn,
             plageBtn;
@@ -115,10 +117,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
 
-            case R.id.cvPlage:
-            case R.id.plageBtn:
+//            case R.id.cvPlage:
+//            case R.id.plageBtn:
+//                intent = new Intent(this, CollectionQuiz.class);
+//                intent.putExtra(EXTRA_MESSAGE, PLAGE);
+//                startActivity(intent);
+//                break;
+
+            case R.id.cvCouleurs:
+            case R.id.couleursBtn:
                 intent = new Intent(this, CollectionQuiz.class);
-                intent.putExtra(EXTRA_MESSAGE, PLAGE);
+                intent.putExtra(EXTRA_MESSAGE, COULEURS);
                 startActivity(intent);
                 break;
         }

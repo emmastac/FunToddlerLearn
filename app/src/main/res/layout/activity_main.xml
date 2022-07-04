@@ -237,7 +237,7 @@
       </androidx.cardview.widget.CardView>
 
       <androidx.cardview.widget.CardView
-          android:id="@+id/cvCourses"
+          android:id="@+id/cvCouleurs"
           android:layout_width="0dp"
           android:layout_height="@dimen/card_height"
           app:layout_columnWeight="1"
@@ -250,7 +250,7 @@
              android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/coursesBtn"
+                android:id="@+id/couleursBtn"
                 android:layout_width="@dimen/main_imageButton_sides"
                 android:layout_height="@dimen/main_imageButton_sides"
                 android:padding="0dp"

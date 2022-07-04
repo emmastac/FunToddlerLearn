@@ -90,7 +90,7 @@ public class CollectionsUtils {
             {"sourcil", "le sourcil"},
             {"langue", "la langue"},
             {"menton", "le menton"},
-            {"levre", "la levre"},
+            {"levre", "la lèvre"},
             {"front", "le front"},
             {"joue", "la joue"},
             {"cheveux", "les cheveux"},
@@ -103,7 +103,7 @@ public class CollectionsUtils {
     public static final String[][] vetements = {
             {"gants", "les gants"},
             {"peignoir", "le peignoir"},
-            {"echarpe", "une echarpe"},
+            {"echarpe", "une écharpe"},
             {"chapeau", "le chapeau"},
             {"bonnet", "le bonnet"},
             {"casquette", "la casquette"},
@@ -118,7 +118,7 @@ public class CollectionsUtils {
     };
 
     public static final String[][] corps = {
-            {"tete", "la tete"},
+            {"tete", "la tête"},
             {"poitrine", "la poitrine"},
             {"fesses", "les fesses"},
             {"epaule", "l' epaule"},
@@ -132,6 +132,20 @@ public class CollectionsUtils {
             {"doigt", "le doigt"},
             {"main", "la main"},
             {"bras", "le bras"}
+    };
+
+    public static final String[][] couleurs = {
+            {"noir", "noir"},
+            {"blanc", "blanc"},
+            {"jaune", "jaune"},
+            {"rouge", "rouge"},
+            {"bleu", "bleu"},
+            {"vert", "vert"},
+            {"gris", "gris"},
+            {"rose", "rose"},
+            {"violet", "violet"},
+            {"marron", "marron"},
+            {"orange", "orange"}
     };
 
 

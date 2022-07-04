@@ -122,14 +122,12 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
 //                this.questions = CollectionsUtils.plage;
 //                this.question = new Question(this.questions);
 //                break;
-        }
-    }
 
-    @Override
-    protected void onStop (){
-        super.onStop();
-        mediaPlayer.release();
-        mediaPlayer = null;
+//            case MainActivity.COULEURS:
+//                this.questions = CollectionsUtils.couleurs;
+//                this.question = new Question(this.questions);
+//                break;
+        }
     }
 
     //  Set background red, disable clicks until audio replays, replay audio
@@ -194,6 +192,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     }
 
     private void GameEnd(){
+        mediaPlayer.reset();
         mediaPlayer.release();
         mediaPlayer = null;
         finish();
@@ -249,6 +248,12 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
     private void playQuestion(){
         while(mediaPlayer !=null && mediaPlayer.isPlaying()){
         }
+        // reset mediaplayer before calling create
+        if(mediaPlayer!=null){
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
         mediaPlayer = MediaPlayer.create(CollectionQuiz.this, getResourceId(this,"raw" , answer));
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -268,7 +273,7 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         btn_one.setBackground(getDrawable(R.drawable.btn_border_black));
         btn_two.setBackground(getDrawable(R.drawable.btn_border_black));
         btn_three.setBackground(getDrawable(R.drawable.btn_border_black));
-        // this must allways follow the background reset
+        // this must always follow the background reset
         enableClicks();
 
         if(num>0){
@@ -276,6 +281,8 @@ public class CollectionQuiz extends AppCompatActivity implements View.OnClickLis
         }
 
         if (shuffledQuestions.size()==num || num==max_quest){
+            while(mediaPlayer !=null && mediaPlayer.isPlaying()){
+            }
             video.playVideo();
             //this.finish();
         }else{
